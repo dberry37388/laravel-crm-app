@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use App\Models\Team;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,8 +23,17 @@ class DatabaseSeeder extends Seeder
         ])
             ->create();
 
-        Team::factory(3)->create([
+        $teams = Team::factory(3)->create([
             'user_id' => $adminUser->id
         ]);
+
+        foreach ($teams as $team) {
+            Company::factory(5, [
+                'team_id' => $team->id,
+                'created_by' => $adminUser->id,
+            ])
+                ->hasContacts(10)
+                ->create();
+        }
     }
 }
