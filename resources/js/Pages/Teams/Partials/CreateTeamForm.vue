@@ -1,5 +1,6 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
+import { InformationCircleIcon } from '@heroicons/vue/solid'
 import JetButton from '@/Jetstream/Button.vue';
 import JetFormSection from '@/Jetstream/FormSection.vue';
 import JetInput from '@/Jetstream/Input.vue';
@@ -29,6 +30,23 @@ const createTeam = () => {
         </template>
 
         <template #form>
+            <div class="rounded-md bg-blue-50 p-4 mb-5 col-span-full" v-if="!$page.props.user.current_team">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <InformationCircleIcon class="h-5 w-5 text-blue-400" aria-hidden="true" />
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-bold text-blue-800">Create Your First Team!</h3>
+                        <div class="mt-2 text-sm text-blue-700">
+                            <p>
+                                Let's get started by creating your first team! Your team is your organization. Once your team has
+                                been created, you will be able to invite users to begin collaborating with.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-span-6">
                 <JetLabel value="Team Owner" />
 
