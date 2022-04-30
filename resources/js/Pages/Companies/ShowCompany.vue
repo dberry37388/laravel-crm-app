@@ -1,14 +1,18 @@
 <script>
-import AppLayout from "../../../../vendor/laravel/jetstream/stubs/inertia/resources/js/Layouts/AppLayout";
+import AppLayout from "../../Layouts/AppLayout";
 import {Orion} from "@tailflow/laravel-orion/lib/orion";
 import {Company} from "../../Models/Company";
 import Button from "../../../../vendor/laravel/jetstream/stubs/inertia/resources/js/Jetstream/Button";
 import ContactTable from "../Contacts/Partials/ContactTable";
 import {Disclosure, DisclosureButton, DisclosurePanel} from "@headlessui/vue";
 import {ChevronDownIcon} from "@heroicons/vue/solid"
+import UpdateCompanySlideOver from "./Partials/UpdateCompanySlideOver";
+import DialogModal from "../../../../vendor/laravel/jetstream/stubs/inertia/resources/js/Jetstream/DialogModal";
 
 export default {
     components: {
+        DialogModal,
+        UpdateCompanySlideOver,
         DisclosurePanel,
         DisclosureButton,
         Disclosure,
@@ -22,12 +26,13 @@ export default {
         companyId: {
             type: Number,
             required: true
-        }
+        },
     },
 
     data() {
         return {
             company: null,
+            editingCompany: false,
         }
     },
 
@@ -52,9 +57,17 @@ export default {
 <template>
     <AppLayout>
         <template #header v-if="company">
-            <h2 class="font-bold text-xl text-gray-800 leading-tight">
-                Manage {{ company.$attributes.name }}
-            </h2>
+            <div class="flex items-center justify-between">
+                <h2 class="font-bold text-xl text-gray-800 leading-tight">
+                    Manage {{ company.$attributes.name }}
+                </h2>
+
+                <div>
+                    <Button type="button" @click="editingCompany = true">
+                        Edit
+                    </Button>
+                </div>
+            </div>
         </template>
 
         <div class="max-w-7xl mx-auto p-5 sm:px-6 lg:px-8" v-if="company">
@@ -90,5 +103,7 @@ export default {
                 </transition>
             </Disclosure>
         </div>
+
+        <UpdateCompanySlideOver :show="editingCompany" :company="company" @close="editingCompany = false" @updated="getCompany" v-if="company" />
     </AppLayout>
 </template>
