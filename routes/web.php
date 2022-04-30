@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Companies\ListCompanies;
+use App\Http\Controllers\Companies\ShowCompany;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,5 +40,6 @@ Route::middleware([
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('companies')->name('companies.')->group(function () {
         Route::get('/', ListCompanies::class)->name('companies-list');
+        Route::get('{companyId}', ShowCompany::class)->name('show');
     });
 });

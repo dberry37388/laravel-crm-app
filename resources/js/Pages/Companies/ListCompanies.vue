@@ -3,9 +3,10 @@
 import {Company} from "../../Models/Company";
 import AppLayout from "../../Layouts/AppLayout";
 import {Orion} from "@tailflow/laravel-orion/lib/orion";
+import Button from "../../../../vendor/laravel/jetstream/stubs/inertia/resources/js/Jetstream/Button";
 
 export default {
-    components: {AppLayout},
+    components: {Button, AppLayout},
     data() {
         return {
             companies: []
@@ -48,7 +49,7 @@ export default {
                         <p class="mt-2 text-sm text-gray-700">A list of all the companies in your account including their name, title, email and role.</p>
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                        <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add user</button>
+                        <Button type="button">Create Company</Button>
                     </div>
                 </div>
                 <div class="mt-8 flex flex-col">
@@ -66,7 +67,11 @@ export default {
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 bg-white">
                                         <tr v-for="company in companies" :key="company.id" class="divide-x divide-gray-200">
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-6">{{ company.$attributes.name }}</td>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-6">
+                                                <a :href="route('companies.show', company.$attributes.id)">
+                                                    {{ company.$attributes.name }}
+                                                </a>
+                                            </td>
                                             <td class="whitespace-nowrap p-4 text-sm text-gray-500">
                                                 <div class="flex">
                                                     <div class="h-10 w-10 flex-shrink-0">

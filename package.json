@@ -26,6 +26,7 @@
         "vue-loader": "^17.0.0"
     },
     "dependencies": {
+        "@headlessui/vue": "^1.6.0",
         "@heroicons/vue": "^1.0.6",
         "@tailflow/laravel-orion": "^2.1.2",
         "ts-loader": "^9.2.9",
