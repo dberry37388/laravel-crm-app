@@ -6,17 +6,15 @@ use App\Models\Company;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\RelationController;
 
-class CompanyContactsApiController extends RelationController
+class CompanyAssignedToApiController extends RelationController
 {
-    use DisableAuthorization;
-
     /**
      * Fully-qualified model class name
      */
     protected $model = Company::class;
 
     /**
-     * Name of the relationship as it is defined on the Post model
+     * Name of the relationship as it is defined on the model
      */
-    protected $relation = 'contacts';
+    protected $relation = 'assignedTo';
 }

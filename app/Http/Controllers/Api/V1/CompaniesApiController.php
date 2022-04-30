@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Company;
-use Orion\Concerns\DisableAuthorization;
+use Illuminate\Support\Facades\Auth;
 use Orion\Http\Controllers\Controller;
-use Orion\Http\Requests\Request;
 
-class CompaniesApiController extends Controller
+class CompaniesApiController extends BaseApiController
 {
-    use DisableAuthorization;
-
     protected $model = Company::class;
+
+    public function includes(): array
+    {
+       return ['contacts', 'assignedTo'];
+    }
 }
