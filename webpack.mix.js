@@ -32,6 +32,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('postcss-import'),
         require('tailwindcss'),
     ])
+    .copyDirectory('resources/fonts', 'public/fonts')
     .alias({
         '@': 'resources/js',
     });

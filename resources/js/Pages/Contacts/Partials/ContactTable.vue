@@ -16,11 +16,11 @@ export default {
                 <table class="min-w-full divide-y divide-gray-300">
                     <thead class="bg-gray-50">
                     <tr class="divide-x divide-gray-200">
-                        <th scope="col" class="py-3.5 pl-4 pr-4 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Job Title</th>
-                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Phone Number</th>
-                        <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-900">Mobile Number</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Job Title</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Mobile Number</th>
                     </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
