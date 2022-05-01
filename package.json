@@ -30,6 +30,7 @@
         "@heroicons/vue": "^1.0.6",
         "@tailflow/laravel-orion": "^2.1.2",
         "ts-loader": "^9.2.9",
-        "typescript": "^4.6.4"
+        "typescript": "^4.6.4",
+        "vue-debounce": "^3.1.0"
     }
 }
