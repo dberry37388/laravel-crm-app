@@ -9,7 +9,6 @@ use Orion\Http\Controllers\Controller;
 
 class ContactsApiController extends Controller
 {
-    use DisableAuthorization;
     use DisablePagination;
 
     protected $model = Contact::class;
