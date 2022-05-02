@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
                 'team_id' => $team->id,
                 'created_by' => $adminUser->id,
             ])
-                ->hasContacts(10)
+                ->hasContacts(2)
                 ->create();
         }
     }

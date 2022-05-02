@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Companies\ListCompanies;
 use App\Http\Controllers\Companies\ShowCompany;
+use App\Http\Controllers\Contacts\ContactDashboard;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -40,6 +41,14 @@ Route::middleware([
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('companies')->name('companies.')->group(function () {
         Route::get('/', ListCompanies::class)->name('companies-list');
-        Route::get('{companyId}', ShowCompany::class)->name('show');
+
+        Route::prefix('{companyId}')->group(function () {
+            Route::get('/', ShowCompany::class)->name('show');
+
+            // Company Contacts
+            Route::prefix('contacts')->name('contacts.')->group(function () {
+                Route::get('/', ContactDashboard::class)->name('index');
+            });
+        });
     });
 });

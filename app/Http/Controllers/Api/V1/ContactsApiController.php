@@ -32,4 +32,9 @@ class ContactsApiController extends Controller
     {
         return ['first_name', 'last_name', 'email'];
     }
+
+    public function sortableBy() : array
+    {
+        return ['first_name', 'last_name', 'email'];
+    }
 }

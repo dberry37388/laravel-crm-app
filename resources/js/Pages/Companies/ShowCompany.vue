@@ -6,11 +6,11 @@ import Button from "../../../../vendor/laravel/jetstream/stubs/inertia/resources
 import UpdateCompanySlideOver from "./Partials/UpdateCompanySlideOver";
 import DialogModal from "../../../../vendor/laravel/jetstream/stubs/inertia/resources/js/Jetstream/DialogModal";
 import ContactDisclosure from "../Contacts/Partials/ContactDisclosure";
-import AddContact from "../Contacts/Partials/AddContact";
+import UpdateContactModal from "../Contacts/Partials/UpdateContactModal";
 
 export default {
     components: {
-        AddContact,
+        UpdateContactModal,
         ContactDisclosure,
         DialogModal,
         UpdateCompanySlideOver,
@@ -29,7 +29,6 @@ export default {
         return {
             company: null,
             editingCompany: false,
-            addingContact: false,
         }
     },
 
@@ -46,7 +45,7 @@ export default {
             } catch (error) {
                 console.error('Unable to retrieve CSRF cookie.');
             }
-        }
+        },
     }
 }
 </script>
@@ -63,10 +62,6 @@ export default {
                     <Button type="button" @click="editingCompany = true">
                         Edit
                     </Button>
-
-                    <Button type="button" @click="addingContact = true">
-                        Contact
-                    </Button>
                 </div>
             </div>
         </template>
@@ -79,6 +74,5 @@ export default {
         </div>
 
         <UpdateCompanySlideOver :show="editingCompany" :company="company" @close="editingCompany = false" @updated="getCompany" v-if="company" />
-        <AddContact :show="addingContact" :company="company" @close="addingContact = false"  v-if="company" />
     </AppLayout>
 </template>

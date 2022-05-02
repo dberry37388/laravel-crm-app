@@ -27,10 +27,6 @@ export default {
                     Contacts
                 </span>
             </div>
-
-            <div>
-                <Button type="button">Create Contact</Button>
-            </div>
         </DisclosureButton>
 
         <!-- Use the built-in <transition> component to add transitions. -->
