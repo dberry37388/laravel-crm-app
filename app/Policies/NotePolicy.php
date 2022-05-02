@@ -2,12 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Company;
+use App\Models\Note;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Auth\Access\Response;
 
-class CompanyPolicy
+class NotePolicy
 {
     use HandlesAuthorization;
 
@@ -26,10 +25,10 @@ class CompanyPolicy
      * Determine whether the user can view the model.
      *
      * @param User $user
-     * @param Company $company
+     * @param Note $note
      * @return bool
      */
-    public function view(User $user, Company $company): bool
+    public function view(User $user, Note $note): bool
     {
         return true;
     }
@@ -42,53 +41,53 @@ class CompanyPolicy
      */
     public function create(User $user): bool
     {
-        $user->ownsTeam($user->current_team_id);
+       return true;
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param User $user
-     * @param Company $company
+     * @param Note $note
      * @return bool
      */
-    public function update(User $user, Company $company): bool
+    public function update(User $user, Note $note): bool
     {
-        return $user->ownsTeam($company->team_id) || $user->id === $company->assigned_to;
+        return $user->ownsTeam($user->current_team_id) || $user->id === $note->created_by;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param User $user
-     * @param Company $company
+     * @param Note $note
      * @return bool
      */
-    public function delete(User $user, Company $company): bool
+    public function delete(User $user, Note $note): bool
     {
-        return $user->ownsTeam($company->team_id);
+        return $user->ownsTeam($user->current_team_id) || $user->id === $note->created_by;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param User $user
-     * @param Company $company
+     * @param Note $note
      * @return bool
      */
-    public function restore(User $user, Company $company): bool
+    public function restore(User $user, Note $note): bool
     {
-        return $user->ownsTeam($company->team_id);
+        return $user->ownsTeam($user->current_team_id);
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param User $user
-     * @param Company $company
+     * @param Note $note
      * @return bool
      */
-    public function forceDelete(User $user, Company $company): bool
+    public function forceDelete(User $user, Note $note): bool
     {
         //
     }
