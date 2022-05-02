@@ -6,16 +6,15 @@ import InputError from "../../../Jetstream/InputError";
 import SecondaryButton from "../../../Jetstream/SecondaryButton";
 import Button from "../../../Jetstream/Button";
 import Input from "../../../Jetstream/Input";
-import {Company} from "../../../Models/Company";
 import {Contact} from "../../../Models/Contact";
 import {usePage} from "@inertiajs/inertia-vue3";
 
 export  default {
     components: {Input, Button, SecondaryButton, InputError, DialogModal},
     props: {
-        company: {
+        contact: {
             type: Object,
-            required: false,
+            required: true,
         }
     },
 
@@ -25,12 +24,12 @@ export  default {
         return {
             show: false,
             form: {
-                first_name: '',
-                last_name: '',
-                email: '',
-                phone_number: '',
-                mobile_number: '',
-                job_title: '',
+                first_name: this.contact.$attributes.first_name,
+                last_name: this.contact.$attributes.last_name,
+                email: this.contact.$attributes.email,
+                phone_number: this.contact.$attributes.phone_number,
+                mobile_number: this.contact.$attributes.mobile_number,
+                job_title: this.contact.$attributes.job_title,
                 processing: false,
             },
         }
@@ -40,10 +39,7 @@ export  default {
         async saveForm() {
             this.form.processing = true;
 
-            await Contact.$query().store({
-                company_id: this.company.$attributes.id,
-                created_by: usePage().props.value.user.id,
-                assigned_to: usePage().props.value.user.id,
+            await Contact.$query().update(this.contact.$attributes.id, {
                 name: this.form.name,
                 first_name: this.form.first_name,
                 last_name: this.form.last_name,
@@ -74,7 +70,7 @@ export  default {
     <DialogModal :closeable="false" :show="show">
         <template #title>
             <h2 class="font-bold">
-                Add Contact
+                Update Contact
             </h2>
         </template>
 
