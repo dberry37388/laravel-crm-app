@@ -2,12 +2,21 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToCompany;
+use App\Traits\BelongsToTeam;
+use App\Traits\CanBeAssignedToUser;
+use App\Traits\CreatedByAUser;
+use App\Traits\HasNotes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Contact extends Model
 {
+    use BelongsToCompany;
+    use CanBeAssignedToUser;
+    use CreatedByAUser;
+    use HasFactory;
+    use HasNotes;
     use HasFactory;
 
     protected $guarded = [
@@ -16,9 +25,4 @@ class Contact extends Model
         'updated_at',
         'deleted_at'
     ];
-
-    public function company(): BelongsTo
-    {
-        return $this->belongsTo(Company::class);
-    }
 }
