@@ -13,17 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('task_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained('companies');
+            $table->foreignId('team_id')->constrained('teams');
             $table->foreignId('created_by_id')->constrained('users');
-            $table->foreignId('assigned_to_id')->nullable()->constrained('users');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->nullable();
-            $table->string('job_title')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('mobile_number')->nullable();
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('task_types');
     }
 };

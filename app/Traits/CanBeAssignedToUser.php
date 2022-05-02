@@ -9,6 +9,6 @@ trait CanBeAssignedToUser
 {
     public function assignedTo(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'assigned_to');
+        return $this->belongsTo(User::class, 'assigned_to_id');
     }
 }

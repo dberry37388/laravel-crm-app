@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         foreach ($teams as $team) {
-            Company::factory(5, [
+            $companies = Company::factory(5, [
                 'team_id' => $team->id,
-                'created_by' => $adminUser->id,
+                'created_by_id' => $adminUser->id,
             ])
                 ->hasContacts(2)
                 ->create();

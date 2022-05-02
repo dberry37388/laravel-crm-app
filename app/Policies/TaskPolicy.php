@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Contact;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ContactPolicy
+class TaskPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class ContactPolicy
      * Determine whether the user can view the model.
      *
      * @param User $user
-     * @param Contact $contact
+     * @param Task $task
      * @return bool
      */
-    public function view(User $user, Contact $contact): bool
+    public function view(User $user, Task $task): bool
     {
         return true;
     }
@@ -48,34 +48,34 @@ class ContactPolicy
      * Determine whether the user can update the model.
      *
      * @param User $user
-     * @param Contact $contact
+     * @param Task $task
      * @return bool
      */
-    public function update(User $user, Contact $contact): bool
+    public function update(User $user, Task $task): bool
     {
-        return $user->ownsTeam($user->current_team_id) || $user->id === $contact->assigned_to_id;
+        return $user->ownsTeam($user->current_team_id) || $user->id === $task->created_by_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param User $user
-     * @param Contact $contact
+     * @param Task $task
      * @return bool
      */
-    public function delete(User $user, Contact $contact): bool
+    public function delete(User $user, Task $task): bool
     {
-        return $user->ownsTeam($user->current_team_id);
+        return $user->ownsTeam($user->current_team_id) || $user->id === $task->created_by_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param User $user
-     * @param Contact $contact
+     * @param Task $task
      * @return bool
      */
-    public function restore(User $user, Contact $contact): bool
+    public function restore(User $user, Task $task): bool
     {
         return $user->ownsTeam($user->current_team_id);
     }
@@ -84,10 +84,10 @@ class ContactPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param User $user
-     * @param Contact $contact
+     * @param Task $task
      * @return bool
      */
-    public function forceDelete(User $user, Contact $contact): bool
+    public function forceDelete(User $user, Task $task): bool
     {
         //
     }

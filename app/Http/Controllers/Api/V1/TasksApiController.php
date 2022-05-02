@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\Api\v1\NoteRequest;
-use App\Models\Note;
+use App\Models\Task;
 use Orion\Concerns\DisablePagination;
 use Orion\Http\Controllers\Controller;
 
-class NotesApiController extends Controller
+class TasksApiController extends Controller
 {
     use DisablePagination;
 
-    protected $model = Note::class;
+    protected $model = Task::class;
 
     protected $request = NoteRequest::class;
 
@@ -32,11 +32,11 @@ class NotesApiController extends Controller
      */
     public function searchableBy() : array
     {
-        return ['body'];
+        return ['title', 'description'];
     }
 
     public function sortableBy() : array
     {
-        return ['created_at'];
+        return ['created_at', 'completed_at'];
     }
 }

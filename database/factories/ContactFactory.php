@@ -29,8 +29,8 @@ class ContactFactory extends Factory
 
         return [
             'company_id' => Company::factory(),
-            'created_by' => $user->id,
-            'assigned_to' => $user->id,
+            'created_by_id' => $user->id,
+            'assigned_to_id' => $user->id,
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'email' => $this->faker->email,

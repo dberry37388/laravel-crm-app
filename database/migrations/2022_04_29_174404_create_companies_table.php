@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('team_id')->constrained('teams');
             $table->string('name', 300);
-            $table->foreignId('created_by')->constrained('users');
-            $table->foreignId('assigned_to')->constrained('users');
+            $table->foreignId('created_by_id')->constrained('users');
+            $table->foreignId('assigned_to_id')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
         });

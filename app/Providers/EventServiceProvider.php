@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Listeners\CreateDefaultTaskTypes;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Laravel\Jetstream\Events\AddingTeam;
+use Laravel\Jetstream\Events\TeamCreated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        TeamCreated::class => [
+            CreateDefaultTaskTypes::class
+        ]
     ];
 
     /**

@@ -54,7 +54,7 @@ class CompanyPolicy
      */
     public function update(User $user, Company $company): bool
     {
-        return $user->ownsTeam($company->team_id) || $user->id === $company->assigned_to;
+        return $user->ownsTeam($company->team_id) || $user->id === $company->assigned_to_id;
     }
 
     /**

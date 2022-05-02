@@ -29,8 +29,8 @@ class CompanyFactory extends Factory
         return [
             'team_id' => Team::factory(),
             'name' => $this->faker->company,
-            'created_by' => $user->id,
-            'assigned_to' => $user->id,
+            'created_by_id' => $user->id,
+            'assigned_to_id' => $user->id,
         ];
     }
 }

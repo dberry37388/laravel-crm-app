@@ -7,6 +7,7 @@ use App\Traits\BelongsToTeam;
 use App\Traits\CanBeAssignedToUser;
 use App\Traits\CreatedByAUser;
 use App\Traits\HasNotes;
+use App\Traits\HasTasks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,6 +19,7 @@ class Company extends Model
     use CreatedByAUser;
     use HasFactory;
     use HasNotes;
+    use HasTasks;
 
     protected $fillable = [
         'name'

@@ -2,6 +2,7 @@
 
 namespace App\Actions\Jetstream;
 
+use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Contracts\CreatesTeams;
@@ -33,5 +34,15 @@ class CreateTeam implements CreatesTeams
         ]));
 
         return $team;
+    }
+
+    protected function setupDefaults(Team $team)
+    {
+        // add default task types
+        foreach (config('defaults.task_types') as $taskType) {
+            $team->taskType()->create([
+                'name' => $taskType
+            ]);
+        }
     }
 }

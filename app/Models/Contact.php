@@ -7,6 +7,7 @@ use App\Traits\BelongsToTeam;
 use App\Traits\CanBeAssignedToUser;
 use App\Traits\CreatedByAUser;
 use App\Traits\HasNotes;
+use App\Traits\HasTasks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +18,7 @@ class Contact extends Model
     use CreatedByAUser;
     use HasFactory;
     use HasNotes;
-    use HasFactory;
+    use HasTasks;
 
     protected $guarded = [
         'id',

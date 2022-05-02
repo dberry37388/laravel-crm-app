@@ -53,7 +53,7 @@ class NotePolicy
      */
     public function update(User $user, Note $note): bool
     {
-        return $user->ownsTeam($user->current_team_id) || $user->id === $note->created_by;
+        return $user->ownsTeam($user->current_team_id) || $user->id === $note->created_by_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class NotePolicy
      */
     public function delete(User $user, Note $note): bool
     {
-        return $user->ownsTeam($user->current_team_id) || $user->id === $note->created_by;
+        return $user->ownsTeam($user->current_team_id) || $user->id === $note->created_by_id;
     }
 
     /**
